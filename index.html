@@ -127,8 +127,12 @@
 		<center>
    
 			<h1>
+
 			<font face="verdana" style="font-size:87%">
-				Multi-Tasking Daily Living Human-Object Interaction Dataset (MDLHOI dataset)
+			<hr style="margin-top:30px; margin-bottom:13px">
+				<p>&nbsp;
+					Multi-tasking Daily Living Human-object Interaction Dataset<br />
+					(MDLHOI dataset) </p>
 			</font>
 			</h1>
 		</center>
@@ -142,102 +146,91 @@
   <font face="verdana">
    <h2>1. Introduction</h2>
    <hr style="margin-top:-10px; margin-bottom:13px">
-   
-<p> This dataset is a collection of 120 RGB-D videos.<br>
-    The 120 videos consist of <strong>8 different scenarios, namely ”working”, ”watering flowers”, ”making coffee”, "cooking", "reading", "eating", "making up" and "cutting fruits"</strong>. <br> All of which are designed to simulate the elderly's daily life under laboratory condition. <br>
-     Each scene has three modes: <strong>”single person”, ”multi person” and ”cooperation”</strong>. <br>
-     There are five completely random action sequence videos in each mode. <br>Compare to other existing state-of-the-art datasets, for the same scenario, we recorded <strong>not only the actions of a single person, but also recorded the collaboration between the two people</strong>, in order to improve the performance of humanoid robots.
-     
-     Our dataset of 120 videos is divided into <strong>a training set of 100 videos</strong> and <strong>a validation set of 20 videos </strong>.<br> The training set consists of 100 videos that are used to train our machine learning model.<br> These videos provide the model with different examples and scenarios to learn, enabling it to generalize and make accurate predictions on new data. <br>Various features such as object detection, action recognition, and scene understanding are extracted from the training videos to develop a robust model.
+   <p> We introduce Multi-tasking Daily Living Human-object Interaction Dataset (MDLHOI) dataset as a new benchmark for human-object interactions detection in videos.<br />
+	   <br />
+	   This dataset includes 8 different daily living scenarios, while every scenario has 3 different mode (<strong>single person tasking, multiple person tasking and collaboration tasking </strong>). <br />
+	   <br />
+	   The collaboration tasking record the collaboration between the two person. We can envision <strong>one of the person as a assistive robot</strong> in order to plan the tasks of an assistive robot. <br />
+	   <br />
+	   Under each scenario and mode we make 5 recordings in random order of the tasks, and finally we have <strong>120 videos</strong>. <br />
+	   <br />
+   </p>
 
-	 The validation set includes 20 videos that are not included in the training set. <br>These videos serve as an unbiased evaluation metric to measure the performance and generalization ability of our trained models. <br>By comparing the model's predictions on the validation set with ground truth, we can determine its accuracy, precision and recall, as well as other performance metrics. This information is critical to understanding the strengths and weaknesses of the model and guiding further improvements.
 
+<div style="width:100%; margin:auto;" align="center">
+<!--	<figure style="text-align:center;">-->
+	<figure>
+	<img alt="" src="https://raw.githubusercontent.com/junpeng2023/Real-World-3D-Dataset/main/images/all_demo_1.png"
+		 style="width: 1050px; height: auto; margin: auto;" align="center">
 
-	 In addition, the annotations of the RGB videos are stored in <strong>120 json files</strong>, with the same name as the corresponding video.<br> The json file contains the information of bounding boxes of humans and objects, human-object-interactions, interacting objects and verbs.		 
-	 The structure inside a json file is shown below: <br>
-	 
-    </p>
-	
-	<!-- <ul>
-		<li>Parent Node
-			<ul>
-				<li>Child Node 1</li>
-				<li>Child Node 2
-					<ul>
-						<li>Grandchild Node 1</li>
-						<li>Grandchild Node 2</li>
-					</ul>
-				</li>
-				<li>Child Node 3</li>
-			</ul>
-		</li>
-		<li>Parent Node 2
-			<ul>
-				<li>Child Node 1</li>
-				<li>Child Node 2</li>
-			</ul>
-		</li>
-	</ul> -->
-
-	<!-- <div style="width:75%; margin:auto;" align="left">
-	
-		
-	<pre style="background-color: #d7d8d8d8; padding: 10px;">
-	json file
-		"annotation"
-			"boxes_h":[[140.01024000000004, -0.00035999999994373866, 648.93056, 665.0298]]
-			"boxes_o":[[601.99936, 561.01968, 719.3497600000001, 681.82992]]
-			"hoi":[0]
-			"interact_object":[[0,2]]
-			"objects_bbox_all":[[601.99936, 561.01968, 719.3497600000001, 681.82992], [820.4492799999999, 454.78044, 931.82976, 642.4102800000001],[609.69024, 689.5396800000001, 730.49024, 720.0000000000001],[784.50048, 561.8804399999999, 867.56992, 696.3901199999999],[737.34016, 359.67959999999994, 894.12992, 573.01992], [718.49984, 583.30044, 797.31968, 717.81012],[704.7904, 463.34988, 797.32032, 636.4198799999999],[140.01024000000004, -0.00035999999994373866, 648.93056, 665.0298]]
-			"objects_all_string"
-			"objects_all_num"
-			"verb"
-		</pre>
-		
-	</div> -->
-
-	
-	
-
-<div style="width:75%; margin:auto;" align="center">
-	<figure style="text-align:center;">
-	<img alt="" src="https://raw.githubusercontent.com/junpeng2023/Real-World-3D-Dataset/main/images/all_demo_1.png" style="width: 800px; height: auto; margin: auto;" align="center">
-	
-	<figcaption>proposed HOI-120 Dataset with annotations</figcaption>
+	<figcaption>Proposed MDLHOI-120 Dataset with full annotations</figcaption>
 </figure>
 </div>
 
-<p>&nbsp;</p>
-<div style="width:75%; margin:auto;" align="left">
-	
+
+
+
+<h3>2. Tasks Setting</h3>
+<hr style="margin-top:-10px; margin-bottom:13px">
+<h4>1) HOI frame-wise detection </h4>
+<p> The input is a picture or a series of pictures, and the output is a triplet or pair-wise triplets of <strong>current time point</strong>.
+	The Triplet contains the bounding boxes of the person and the interacted object, as well as the action of the interaction. <br />
+	<br />
+	<strong>Information from any time point in the video is allowed to be used.</strong>
+</p>
+
+
+<h4>2) HOI segment prediction</h4>
+<p> The input is a picture or a series of pictures, and the output is a triplet or pair-wise triplets of next HOI segment.
+	The Triplet contains the bounding boxes of the person and the interacted object, as well as the action of the interaction. <br />
+	<br />
+	<strong>Information only before the current time point in the video is allowed to be used.</strong>
+</p>
+
+
+
+
+
+<h3>3. Features included in the dataset</h3>
+  <hr style="margin-top:-10px; margin-bottom:13px">
+  <p>The entire dataset of bounding boxes and action labels are <strong>manually annotated rather than derived</strong>.
+  This means that in each frame we provide accurate object bounding boxes, which are very useful for many Computer Vision related tasks.
+	<p>
+  <p>The annotations of the RGB-D videos are stored in <strong>120 json files</strong>, with the same name as the corresponding video.<br />
+   <br />
+   The json file contains the information of bounding boxes of humans and objects, human-object-interactions, interacting objects and actions. <br />
+   <br />
+   The structure of the json file is shown below: <br />
+</p>
+
+<div style="width:85%; margin:auto;" align="left">
+
 	<pre style="background-color: #d7d8d8d8; padding: 10px;">
 	json file
-	├── "annotation":          # annotations
-		├── "boxes_h":            # bounding boxes of humans
-		├── "boxes_o":            # bounding boxes of objects
-		├── "hoi":                # human-object-interactions
-		├── "interact_object":    # interacting objects
-		├── "objects_bbox_all":   # bounding boxes of all objects
-		├── "objects_all_string": # all objects
-		├── "objects_all_num":    # the number of all objects
-		└── "verb":               # action labels
+	├── "annotation":          	 	 # annotations
+		├── "boxes_h":            	 # bounding boxes of humans
+		├── "boxes_o":            	 # bounding boxes of objects
+		├── "hoi":                	 # human-object-interactions
+		├── "interact_object":    	 # interacting objects
+		├── "objects_bbox_all":   	 # bounding boxes of all objects
+		├── "objects_all_string": 	 # name strings of all objects
+		├── "objects_all_num":    	 # the number of all objects
+		└── "verb":               	 # action labels
 		</pre>
 		<div style="width:100%; margin:auto;" align="center">
-			<p>The information each json file contains</p>
+			<p>The information in each json file</p>
 		</div>
-	</div>
+</div>
 
 
-<h3>2. Dataset in number</h3>
+
+<h3>4. Descriptions of the dataset</h3>
 <hr style="margin-top:-10px; margin-bottom:13px">
-<!-- <strong>Note: actions labelled from A1 to A60 are contained in "NTU RGB+D", and actions labelled from A1 to A120 are in "NTU RGB+D 120".</strong></p> -->
-
 <p>&nbsp;</p>
 
 
 <div style="width:75%; margin:auto;">
-    <p><strong><em>2.1 Some facts about the dataset</em></strong></p>
+    <p><strong><em>4.1 Statistics of the dataset</em></strong></p>
 
 <table align="center" border="1" style="width:92%">
     <tbody>
@@ -247,27 +240,27 @@
         </tr>
         <tr>
             <td >Senarios</td>
-            <td >coffee/breakfast/reading/flower/working/eating/fruit/make_up/wear/bad</td>
+            <td >coffee/breakfast/reading/flower/working/eating/fruit/restroom</td>
         </tr>
         <tr>
             <td >Recordings</td>
-            <td >120 RGB-D videos(3 groups with 5 repetitions for each senario)</td>
+            <td >120 RGB-D videos(3 modes with 5 repetitions for each senario)</td>
         </tr>
         <tr>
             <td >Playtime</td>
-            <td >1 hour and 15 minutes, or 221000 RGB-D image frames</td>
+            <td >1 hour and 1 minute, or 92297 RGB-D image frames in total</td>
         </tr>
 		<tr>
-            <td >mean frames</td>
-            <td >221000 RGB-D image frames</td>
+            <td >Mean frames</td>
+            <td >769 RGB-D image frames of each video</td>
         </tr>
 		<tr>
-            <td >max frames</td>
-            <td >771 RGB-D image frames</td>
+            <td >Max frames</td>
+            <td >1778 RGB-D image frames</td>
         </tr>
         <tr>
             <td >Quality</td>
-            <td >640 px × 480 px image resolution; 30 fps</td>
+            <td >1280 px × 720 px image resolution; 25 fps</td>
         </tr>
         <tr>
             <td >Actions</td>
@@ -275,11 +268,11 @@
         </tr>
         <tr>
             <td >Objects</td>
-            <td >42 commonly used objects in daily life </td>
+            <td >37 commonly used objects in daily life </td>
         </tr>
         <tr>
             <td >Annotations</td>
-            <td >Actions and object bounding boxes are fully labeled for each frame</td>
+            <td >Pair-wise HOI interactions are fully labeled for each frame</td>
 	    </tr>
     </tbody>
 </table>
@@ -290,7 +283,7 @@
 
 <div  style="width:75%; margin:auto;">
 <!-- <p><strong>2.2 Action Label Mapping</strong></p> -->
-<p><strong><em>2.2 Action Label Mapping</em></strong></p>
+<p><strong><em>4.2 Action label mapping</em></strong></p>
 
 
 <table align="center" border="1" style="width:92%">
@@ -455,7 +448,7 @@
 
 <p>&nbsp;</p>
 <div  style="width:85%; margin:auto;">
-<p><strong><em>2.3  Object Class Label Mapping</em></strong></p>
+<p><strong><em>4.3  Object class label mapping</em></strong></p>
 
 <table align="center" border="1" style="width:92%">
 	<tbody>
@@ -509,16 +502,16 @@
 			<td>object 31: peeler </td>
 		</tr>
         <tr>
-			<td>object 32: perfume </td>
+			<td><s>object 32: perfume</s> </td>
 			<td>object 33: mirror </td>
-			<td>object 34: lipstick</td>
+			<td><s>object 34: lipstick</s></td>
 			<td>object 35: cumb  </td>
 		</tr>
         <tr>
-			<td>object 36: hut </td>
-			<td>object 37: cloth </td>
+			<td><s>object 36: hut</s></td>
+			<td><s>object 37: cloth</s></td>
 			<td>object 38: bag</td>
-			<td>object 39: keys </td>
+			<td><s>object 39: keys</s></td>
 		</tr>
         <tr>
 			<td>object 40: toothbrush</td>
@@ -534,17 +527,75 @@
 
 
 <p>&nbsp;</p>
-<h3>3. Action Ground Truth</h3>
+<h3>5. Actions distribution of MDLHOI dataset</h3>
 <hr style="margin-top:-10px; margin-bottom:13px">
+
+<!--<div style="clear:both;"></div>-->
+<!--<p>&nbsp;</p>-->
+<!--<div style="width:75%; margin:auto;" align="center">-->
+<!--	<figure style="text-align:center;">-->
+<!--<img alt="" src="https://raw.githubusercontent.com/junpeng2023/Real-World-3D-Dataset/main/images/action_distribution_1.png" style="float:center; height:auto; width: 500px;">-->
+<!--<div style="clear:both;"></div>-->
+<!--<p>&nbsp;</p>-->
+<!--<figcaption style="text-align:center;"> Action Distribution in the MDLHOI dataset</figcaption>-->
+<!--</figure>-->
+<!--</div>-->
+
 
 <div style="clear:both;"></div>
 <p>&nbsp;</p>
 <div style="width:75%; margin:auto;" align="center">
 	<figure style="text-align:center;">
-<img alt="" src="https://raw.githubusercontent.com/junpeng2023/Real-World-3D-Dataset/main/images/action_distribution_1.png" style="float:center; height:auto; width: 500px;">
+<img alt="" src="https://raw.githubusercontent.com/junpeng2023/Real-World-3D-Dataset/main/images/action_distribution_1.png" style="float:center; height:auto; width: 800px;">
 <div style="clear:both;"></div>
 <p>&nbsp;</p>
-<figcaption style="text-align:center;"> Action Distribution in Videos</figcaption>
+<figcaption style="text-align:center;"> Bar diagram of action distribution in 120 videos</figcaption>
+</figure>
+</div>
+<div style="clear:both;"></div>
+<p>&nbsp;</p>
+<div style="width:75%; margin:auto;" align="center">
+	<figure style="text-align:center;">
+<img alt="" src="https://raw.githubusercontent.com/junpeng2023/Real-World-3D-Dataset/main/images/donut_diagramm_sym_120.png" style="float:center; height:auto; width: 800px;">
+<div style="clear:both;"></div>
+<p>&nbsp;</p>
+<figcaption style="text-align:center;">Donut diagram of action distribution in 120 videos</figcaption>
+</figure>
+</div>
+
+<div style="width:75%; margin:auto;" align="center">
+	<figure style="text-align:center;">
+<img alt="" src="https://raw.githubusercontent.com/junpeng2023/Real-World-3D-Dataset/main/images/bar_validation_20.png" style="float:center; height:auto; width: 800px;">
+<div style="clear:both;"></div>
+<p>&nbsp;</p>
+<figcaption style="text-align:center;">Bar diagram of action distribution in 20 videos for validation</figcaption>
+</figure>
+</div>
+
+<div style="width:75%; margin:auto;" align="center">
+	<figure style="text-align:center;">
+<img alt="" src="https://raw.githubusercontent.com/junpeng2023/Real-World-3D-Dataset/main/images/donut_validation_20.png" style="float:center; height:auto; width: 800px;">
+<div style="clear:both;"></div>
+<p>&nbsp;</p>
+<figcaption style="text-align:center;">Donut diagram of action distribution in 20 videos for validation</figcaption>
+</figure>
+</div>
+
+<div style="width:75%; margin:auto;" align="center">
+	<figure style="text-align:center;">
+<img alt="" src="https://raw.githubusercontent.com/junpeng2023/Real-World-3D-Dataset/main/images/bar_100_training.png" style="float:center; height:auto; width: 800px;">
+<div style="clear:both;"></div>
+<p>&nbsp;</p>
+<figcaption style="text-align:center;">Bar diagram of action distribution in 100 videos for training</figcaption>
+</figure>
+</div>
+
+<div style="width:75%; margin:auto;" align="center">
+	<figure style="text-align:center;">
+<img alt="" src="https://raw.githubusercontent.com/junpeng2023/Real-World-3D-Dataset/main/images/donut_100_training.png" style="float:center; height:auto; width: 800px;">
+<div style="clear:both;"></div>
+<p>&nbsp;</p>
+<figcaption style="text-align:center;">Donut diagram of action distribution in 100 videos for training</figcaption>
 </figure>
 </div>
 <!-- <p>following data format is used in Action ground truth:<br>
@@ -554,26 +605,32 @@
     
     ```</p> -->
 
+<h3>6. Groud truth structure description</h3>
+<hr style="margin-top:-10px; margin-bottom:13px">
 
 <p>&nbsp;</p>
     <p>For each video human action grundtruth, we record the start and end frames of each action
 		as follows, and then represent the human action and the object being touched with the
-		corresponding numeric code in the middle bracket. For example, [1,17] means that the
-		person approaches the phone. The action segment[...94,[22,17],263...] means the human is
-		talking on a phone from frame 94 to frame 263.
-		For multiple people mode as well as for cooperative mode. The actions of each person
-		in the scene are labelled in turn in the middle brackets. For example, the action segment
-		[21,17,5,2] means that the first person is playing with his phone while the second person
-		is putting down his glass.</p>
-	<div style="width:75%; margin:auto;" align="left">
-	
+		corresponding numeric code in the middle bracket. For example, <strong>[1,22]</strong> means that the
+		person approaches the computer. The action segment <strong>[...42, [1,22], 53...]</strong> means the human is
+		approching on a computer from frame <strong>42</strong> to frame <strong>53</strong>.
+
+		<div style="width:75%; margin:auto;" align="left">
+
 		<figure style="text-align:center;">
 		<pre style="background-color: #d7d8d8d8; padding: 10px;">
         work_single_2:[0,[0,0],42,[1,22],53,[21,22],189,[2,22],196,[1,14],206,[4,14],210,[1,15],221,[13,15]<br>,262,[15,15],463,[18,15],480,[5,14],507,[2,14],547,[0,0],564]
 		</pre>
-		<figcaption style="text-align:center;">Sample of action groundtruth template for single person mode</figcaption>
+		<figcaption style="text-align:center;">Example of action ground truth template for single person mode</figcaption>
 		</figure>
 		</div>
+
+
+		For multiple people mode as well as for cooperative mode. The actions of each person
+		in the scene are labelled in turn in the middle brackets. For example, the action segment
+		[4,2,1,2] means that the first person is taking the cup while the second person
+		is approaching the cup.</p>
+
 
 	<div style="width:75%; margin:auto;" align="left">
 	
@@ -587,7 +644,7 @@
 		,758,[2,2,8,5],776,[0,0,8,5],795,[0,0,5,5],810,[0,0,2,5],819,[0,0,1,3]<br>,825,[0,0,3,3],837,[0,0,2,3],843,[0,0,1,3],846,[0,0,4,3],856,[0,0,6,3],881,[0,0,4,3],897,[0,0,5,3]
 		,912,[0,0,2,3],921,[0,0,1,5],928,[0,0,4,5],935,[0,0,8,5],966,[0,0,5,5]<br>,970,[0,0,2,5],992,[0,0,4,2],1006,[0,0,10,2],1025,[0,0,5,2],1052,[0,0,2,2],1062,[0,0,0,1],1085]
 		</pre>
-		<figcaption style="text-align:center;">Sample of action groundtruth template for multi person mode</figcaption>
+		<figcaption style="text-align:center;">Example of action ground truth template for multi person mode</figcaption>
 		</figure>
 		</div>
 
@@ -599,7 +656,7 @@
 		,392,[22,17,4,2],412,[5,17,5,2],432,[2,17,5,2],437,[1,2,2,2],463,[4,2,0,1]<br>,490,[10,2,0,1],555,[5,2,0,1],586,[2,2,0,1],603,[0,0,0,1]
 		,613,[0,0,1,2],644,[0,0,3,2],677,[0,0,2,2],697,[0,0,0,1],725]
 		</pre>
-		<figcaption style="text-align:center;">Sample of action groundtruth template for coorperation mode</figcaption>
+		<figcaption style="text-align:center;">Example of action ground truth template for coorperation mode</figcaption>
 		</figure>
 		</div>
 
@@ -661,8 +718,7 @@
 <!-- <p> If you want more information about the dataset, answers to FAQs and sample codes to read the data, more details can be found <a href=""></a> </p>
 <p>&nbsp;</p> -->
 
-
-<h3>4. Dataset Size</h3>
+<h3>7. Dataset Size</h3>
 <hr style="margin-top:-10px; margin-bottom:13px">
 
 <p>To simplify the download process, we list the size of each kind of file, which is shown in the table below</p>
@@ -672,72 +728,72 @@
 		<tr>
 			<td><strong>File Types</strong></td>
 			<td><strong>"Real World 3D Dataset"</strong></td>
-			
+
 		</tr>
 		<tr>
 			<td>The 120 json files</td>
 			<td>86.49 MB</td>
-			
+
 		</tr>
 		<tr>
 			<td>rosbag files</td>
 			<td>260.1 GB</td>
-			
+
 		</tr>
 		<tr>
 			<td>Depth videos</td>
-			<td> 3.0 GB</td>
-			
+			<td> 2.3 GB</td>
+
 		</tr>
 		<tr>
 			<td>RGB videos</td>
-			<td> 2.9 GB</td>
-			
+			<td> 2.4 GB</td>
+
 		</tr>
 		<tr>
-			<td>Yolo outputs</td>
-			<td> 177.8 GB</td>
-			
+			<td>png files for pictures (YOLO)</td>
+			<td> 94.3 GB</td>
+
 		</tr>
 		<tr>
-			<td>png files for pictures</td>
-			<td> 5.0 GB</td>
-			
-		</tr> 
-		
+			<td>txt files for annotations (YOLO) </td>
+			<td> 27.32 MB</td>
+
+		</tr>
+
 		<tr>
 			<td><strong>Total</strong></td>
-			<td><strong>448.89 GB</strong></td>
-			
+			<td><strong>359.21 GB</strong></td>
+
 		</tr>
 	</tbody>
 </table>
 
 <!-- <script>
 	var data = {"annotation": [{"boxes_h": [[140.01024000000004, -0.00035999999994373866, 648., 648.93056, 665.0298]], "boxes_o": [[601.99936, 561.01968, 719.3497600000001, 681.82992]], "hoi": [0], "interact_object": [[0, 2]], "objects_bbox_allox_all": [[601.99936, 561.01968, 719.3497600000001, 681.82992], [820.4492799992799999999, 454.78044, 931.82976, 642.4102800000001], [609.69024, 689.53968000  -0.00035999999994373866, 648.93056, 665.0298]], "objects_all_string": ["cup""cup", "milk", "scoop", "sugar", "kettle", "honey", "coffee", "human1"], "objects_all_num": [2, 3, 5, 6, 7, 8, 4, 0], "verb": [4]}]};
-	
+
 	function createTree(container, obj) {
 		container.innerHTML = createTreeText(obj, 0);
 	}
-	
+
 	function createTreeText(obj, nest) {
 		if (typeof obj !== 'object') return obj;
-		
+
 		var txt = '';
 		var nestStr = '&nbsp;&nbsp;'.repeat(nest * 2);
-		
+
 		for (var key in obj) {
 			txt += nestStr + key + '<br>';
 			txt += createTreeText(obj[key], nest + 1);
 		}
-		
+
 		return txt;
 	}
-	
+
 	createTree(document.getElementById('jsonTree'), data);
-	
+
 	</script> -->
-	
+
 
 <p>&nbsp;</p>
 
@@ -748,14 +804,14 @@
 
 <div style="clear:both;"></div>
 
-<h3>5. Sample Videos</h3>
+<h3>8. Example Videos</h3>
 <hr style="margin-top:-10px; margin-bottom:13px">
 <p>&nbsp;</p>
 
 <figure style="text-align:center;">
     <img alt="" src="https://raw.githubusercontent.com/junpeng2023/Real-World-3D-Dataset/main/images/3_modes_demo.png" style="width: 800px; height: auto; margin: auto;">
-	<figcaption>The image illustrates the examples of single person, multi-person, and coorperation HOI in computer vision.</figcaption>
-    
+	<figcaption>The image illustrates the examples of single person, multi-person, and coorperation HOI in the MDLHOI.</figcaption>
+
 </figure>
 
 
@@ -764,7 +820,6 @@
 <table align="center">
 	<tbody>
 		<tr>
-			
 			<!-- <td><iframe frameborder="0" height="200" src="/media/ziwei/yuankai/RGB_video/col/col_coffee/coffee_two33_2022-10-17-18-26-34_camera_color_image_raw_compressed.mp4" width="320"></iframe>​​</td> -->
 			<td><iframe frameborder="0" height="150" src="https://www.youtube.com/embed/BpOdzsZ9_us?ref=0&autoplay=1&mute=1&loop=1&playlist=BpOdzsZ9_us&controls=0&showinfo=0" width="240" allow="autoplay"></iframe></td>
 			<td><iframe frameborder="0" height="150" src="https://www.youtube.com/embed/97uPlUsHBuU?ref=0&autoplay=1&mute=1&loop=1&playlist=97uPlUsHBuU&controls=0&showinfo=0" width="240" allow="autoplay"></iframe></td>
@@ -775,7 +830,7 @@
 			<td><iframe frameborder="0" height="150" src="https://www.youtube.com/embed/4o8N0TbprgE?ref=0&autoplay=1&mute=1&loop=1&playlist=4o8N0TbprgE&controls=0&showinfo=0" width="240" allow="autoplay"></iframe></td>
 		</tr>
 		<tr>
-			
+
 			<!-- <td><iframe frameborder="0" height="200" src="/media/ziwei/yuankai/RGB_video/col/col_coffee/coffee_two33_2022-10-17-18-26-34_camera_color_image_raw_compressed.mp4" width="320"></iframe>​​</td> -->
 			<td><iframe frameborder="0" height="150" src="https://www.youtube.com/embed/muJDg4ttx0k?ref=0&autoplay=1&mute=1&loop=1&playlist=muJDg4ttx0k&controls=0&showinfo=0" width="240" allow="autoplay"></iframe></td>
 		    <!-- <td><iframe frameborder="0" height="200" src="/media/ziwei/yuankai/RGB_video/col/col_makeup/make_up_col_1_2022-11-11-20-39-21_camera_color_image_raw_compressed.mp4" width="320"></iframe></td> -->
@@ -790,11 +845,11 @@
 			<!-- <td><iframe frameborder="0" height="200" src="/home/ziwei/Videos/cvat_coffee_col_3_1.mp4" width="320"></iframe>​​</td> -->
 			<td><iframe frameborder="0" height="150" src="https://www.youtube.com/embed/wTmtI949Svs?ref=0&autoplay=1&mute=1&loop=1&playlist=wTmtI949Svs&controls=0&showinfo=0" width="240" allow="autoplay"></iframe></td>
 			<td><iframe frameborder="0" height="150" src="https://www.youtube.com/embed/u882dZqjRy8?ref=0&autoplay=1&mute=1&loop=1&playlist=u882dZqjRy8&controls=0&showinfo=0" width="240" allow="autoplay"></iframe></td>
-		
+
 			<td><iframe frameborder="0" height="150" src="https://www.youtube.com/embed/4qYHs27sfdI?ref=0&autoplay=1&mute=1&loop=1&playlist=4qYHs27sfdI&controls=0&showinfo=0" width="240" allow="autoplay"></iframe></td>
 			<td><iframe frameborder="0" height="150" src="https://www.youtube.com/embed/zzSZNyb7Rv4?ref=0&autoplay=1&mute=1&loop=1&playlist=zzSZNyb7Rv4&controls=0&showinfo=0" width="240" allow="autoplay"></iframe></td>
 		</tr>
-        
+
 
         <!-- <tr>
 			<td colspan="2">
@@ -804,43 +859,31 @@
 				</video>
 			</td>
 		</tr> -->
+<!--	<figcaption>The image illustrates the examples of single person, multi-person, and coorperation HOI in the MDLHOI.</figcaption>-->
 	</tbody>
 </table>
+<p>&nbsp;</p>
 
-<h3>6. How to download</h3>
+<h3>9. How to download</h3>
 <hr style="margin-top:-10px; margin-bottom:13px">
 
 <!-- <p>We provide more information about the data, answers to FAQs, samples codes to read the data, and the latest published results on our datasets <a href="https://github.com/shahroudy/NTURGB-D" target="_blank">here</a>.</p> -->
 
 <p> If you want more information about the dataset, answers to FAQs and sample codes to read the data, more details can be found below: <a href=""></a> </p>
-<!--<p>&nbsp;</p>-->
 
-<div style="margin-left: 1px; display: inline-block;">
 
-	120 json files for videos  86.49 MB<br>
+<div style="margin-left: 10px; display: inline-block;">
+<strong>The 120 json files</strong> 86.49 MB (Release after acceptance)<br>
 
-	Rosbag files 260.1 GB<br>
+<strong>Rosbag files</strong> 260.1 GB (Release after acceptance)<br>
 
-	Depth videos 3.0 GB<br>
+<strong>Depth videos</strong> 3.0 GB (Release after acceptance)<br>
 
-	RGB videos 2.9 GB<br>
+<strong>RGB videos</strong> 2.9 GB (Release after acceptance)<br>
 
-	Manual object annotations 177.8 GB<br>
+<strong>YOLO outputs</strong> 177.8 GB (Release after acceptance)<br>
 
-	PNG files for images 5.0 GB<br>
-
-<!--	-->
-<!--<a href="https://github.com/junpeng2023/MDLHOI/tree/main/json_120">The 120 json files</a> 86.49 MB<br>-->
-
-<!--<a href="https://drive.google.com/open?id=1Qc3SOXdjzVUd1LDuG0ZS7DsE4Kb0FYVr">rosbag files</a> 260.1 GB<br>-->
-
-<!--<a href="https://github.com/junpeng2023/MDLHOI/tree/main/">Depth videos</a> 3.0 GB<br>-->
-
-<!--<a href="https://github.com/junpeng2023/MDLHOI/tree/main/">RGB videos</a> 2.9 GB<br>-->
-
-<!--<a href="https://drive.google.com/open?id=1Qc3SOXdjzVUd1LDuG0ZS7DsE4Kb0FYVr">Yolo outputs</a> 177.8 GB<br>-->
-
-<!--<a href="https://drive.google.com/open?id=1Qc3SOXdjzVUd1LDuG0ZS7DsE4Kb0FYVr">png files for pictures</a> 5.0 GB<br>-->
+<strong>PNG files for pictures</strong> 5.0 GB (Release after acceptance)<br>
 
 </div>
 
@@ -848,15 +891,15 @@
 
 
 
+<p>&nbsp;</p>
 
-
-<h3>7. Terms &amp; Conditions of Use</h3>
+<h3>10. Terms &amp; Conditions of Use</h3>
 <hr style="margin-top:-10px; margin-bottom:13px">
 
 <p>This dataset is intended exclusively <strong> for academic research purposes </strong>and is available <strong>free of charge to researchers from educational or research institutions</strong>, provided it is used non-commercially.</p>
 
 <p>Please note the following conditions that govern the use of this dataset:<br>
-	• Without explicit permission from us, any redistribution, derivation or creation of a new dataset from this existing dataset, or any form of commercial usage, either partially or in its entirety, is strictly prohibited and may be considered unlawful.<br>
+	• Without explicit permission from us, any redistribution, derivation or creation of a new dataset from this existing dataset, or any form of commercial usage, either partially or in its entirety,<strong> is strictly prohibited and may be considered unlawful</strong>.<br>
 	• In consideration of privacy, images of any subjects included in these datasets are permitted for demonstration purposes only within academic publications and presentations.<br>
 	• All users of this dataset agree to protect, defend and hold harmless, along with its officers, employees, and agents, collectively and individually, from all losses, costs, and damages.  </p>
 
